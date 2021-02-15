@@ -19,3 +19,5 @@ Route::get('/folders/{id}/tasks', [TaskController::class, 'index'])->name('tasks
 //Route::get('/folders/create', 'App\Http\Controllers\folderController@showCreateForm')->name('folders.create');
 Route::get('/folders/create', [folderController::class, 'showCreateForm'])->name('folders.create'); //laravel8以降のrouteの記述
 Route::post('/folders/create', [FolderController::class, 'create']); //laravel8以降のrouteの記述
+Route::get('/folders/{id}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
+Route::post('/folders/{id}/tasks/create', [TaskController::class, 'create']);
