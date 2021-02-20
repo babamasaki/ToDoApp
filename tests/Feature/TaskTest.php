@@ -31,7 +31,7 @@ class TaskTest extends TestCase
         parent::setUp();
 
         // テストケース実行前にフォルダデータを作成する
-        $this->seed('FoldersTableSeeder');
+
     }
 
     /**
@@ -46,7 +46,7 @@ class TaskTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors([
-            //'due_date' => '期限日 には日付を入力してください。',
+            'due_date' => '期限日 には日付を入力してください。',
         ]);
     }
 
@@ -62,9 +62,28 @@ class TaskTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors([
-            //'due_date' => '期限日 には今日以降の日付を入力してください。',
+            'due_date' => '期限日 には今日以降の日付を入力してください。',
         ]);
     }
 
+    /**
+    * 状態が定義された値ではない場合はバリデーションエラー
+    * @test
+    */
+    public function status_should_be_within_defined_numbers()
+    {
+        $this->seed('FoldersTableSeeder'); //setup()内に記述しているとエラーが発生するため移動
+        $this->seed('TasksTableSeeder');
 
+        $response = $this->post('/folders/1/tasks/1/edit', [
+            //'folder_id' => 1,
+            'title' => 'Sample task',
+            'due_date' => Carbon::today()->format('Y/m/d'),
+            'status' => 999,
+        ]);
+
+        $response->assertSessionHasErrors([
+            'status' => '状態 には 未着手、着手中、完了 のいずれかを指定してください。',
+        ]);
+    }
 }
