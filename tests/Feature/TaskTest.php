@@ -31,7 +31,7 @@ class TaskTest extends TestCase
         parent::setUp();
 
         // テストケース実行前にフォルダデータを作成する
-        $this->seed('FoldersTableSeeder');
+
     }
 
     /**
@@ -72,9 +72,11 @@ class TaskTest extends TestCase
     */
     public function status_should_be_within_defined_numbers()
     {
+        $this->seed('FoldersTableSeeder'); //setup()内に記述しているとエラーが発生するため移動
         $this->seed('TasksTableSeeder');
-        
+
         $response = $this->post('/folders/1/tasks/1/edit', [
+            //'folder_id' => 1,
             'title' => 'Sample task',
             'due_date' => Carbon::today()->format('Y/m/d'),
             'status' => 999,
