@@ -23,7 +23,7 @@ class FolderController extends Controller
         $folder->title = $request->title;
 
         //ユーザーに紐付けて保存
-        Auth::uer()->folders()->seve($folder);
+        Auth::user()->folders()->save($folder);
 
         //インスタンスの状態をデータベースに書き込む
         $folder->save();
