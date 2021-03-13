@@ -23,7 +23,7 @@ class HomeController extends Controller
         //フォルダが一つでもあればタスク一覧にリダイレクトする。
 
         return redirect()->route('tasks.index',[
-            'id' => $folder->id,
+            'folder' => $folder->id,
         ]);
     }
 }
