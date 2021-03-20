@@ -83,19 +83,17 @@ class TaskController extends Controller
     /**
      * タスク編集フォーム
      * @param Folder $folder
-     * @param Task $task
+     * @param Task $task_id
      * @return \Illuminate\View\View
      */
-    public function showEditForm(Folder $folder, Task $task)
+    public function showEditForm(Folder $folder, Task $task_id)
     {
         // $this->checkRelation($folder, $task);
 
         // $task = Task::find($task_id);
-        var_dump($task->folder_id);
-        var_dump($task->id);
-        exit;
+
         return view('tasks/edit', [
-            'task' => $task,
+            'task' => $task_id,
         ]);
     }
 
@@ -106,20 +104,23 @@ class TaskController extends Controller
      * @param EditTask $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function edit (Folder $folder, Task $task, EditTask $request)
+    public function edit (Folder $folder, Task $task_id, EditTask $request)
     {
         // $this->checkRelation($folder, $task);
 
-        $task = Task::find($task);
+
+        $task = Task::find($task_id->id);
+
 
         $task-> title = $request->title;
         $task-> status = $request->status;
         $task->timestamps = false;
         $task->due_date = $request->due_date;
+
         $task->save();
 
         return redirect()->route('tasks.index',[
-            'id' => $task->folder_id,
+            'folder' => $task->folder_id,
         ]);
     }
 
