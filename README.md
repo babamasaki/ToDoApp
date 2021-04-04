@@ -8,11 +8,9 @@
     mysqld  Ver 8.0.23
  
     Laravel Framework 8.26.1
-　
- 
+    
     PHP 7.3.24
-　
- 
+    
     AWS LightSail
 
 ### ■URL(AWS LightSail)
