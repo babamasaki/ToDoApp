@@ -9,19 +9,21 @@
  
 　Laravel Framework 8.26.1
 　
+ 
  PHP 7.3.24
 　
+ 
  AWS LightSail
 
 ### ■URL(AWS LightSail)
 　http://13.115.59.77/
 
 ### ■テストユーザ
-　メールアドレス：dummy@email.com
+  メールアドレス：dummy@email.com
 　
- パスワード：test1234
+  パスワード：test1234
 
 ### ■使用機能
-　・ユーザー登録/ログイン機能
-　
- ・ToDoリストのCRUD機能
+  ・ユーザー登録/ログイン機能
+ 
+  ・ToDoリストのCRUD機能
