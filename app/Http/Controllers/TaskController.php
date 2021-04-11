@@ -33,7 +33,7 @@ class TaskController extends Controller
 
         // 選ばれたフォルダに紐づくタスクを取得する
         // $tasks = $current_folder->tasks()->get();
-        $tasks = $folder->tasks()->get();
+        $tasks = $folder->tasks()->orderBy('status', 'asc')->get();
         // ------end 10章エラーハンドリング対応による対応で修正-------
         
         return view('tasks/index', [
